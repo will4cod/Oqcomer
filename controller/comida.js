@@ -19,11 +19,20 @@ function filtrarLista(periodo){
 const comida = {
 
     mensagem: function(req, res, next) {
-        res.send('Acesse http://localhost:3000/sortear?periodo=cafe como exemplo, possui as opções cafe, almoco, janta');
+        res.render('index');
     },
 
     menu: function(req,res){
         res.json(filtrarLista(req.query.periodo));
+    },
+
+    menuPeriodo: function(req,res){
+        const { periodo } = req.params;
+        if(periodo === 'cafe' || periodo === 'almoco' || periodo === 'janta'){
+            res.json(filtrarLista(periodo));
+        }else{
+            res.send("Periodo invalido!!");
+        }
     },
 
     sorteio: function(req,res){
