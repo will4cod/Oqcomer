@@ -1,9 +1,11 @@
 const csvjson = require('convert-csv-to-json');
 const { json } = require("body-parser");
+const path = require('path');
 
 //Convertendo o csv em json
 function listaJson(){
-    let listaJson = csvjson.parseSubArray('\n', ':').getJsonFromCsv("C:/Users/RaioII/Desktop/oqcomer/oq-comer/controller/comida.csv");
+    const caminho = path.join(__dirname, 'comida.csv');
+    let listaJson = csvjson.parseSubArray('\n', ':').getJsonFromCsv(caminho);
 
     return listaJson;
 }
